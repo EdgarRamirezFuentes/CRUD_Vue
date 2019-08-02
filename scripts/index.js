@@ -1,14 +1,22 @@
+// SweetAlert
 const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
     timer: 3000
   });
+
+// Vue App
 const app = new Vue({
     el: '#app',
     data:{
         tasks: [],
         taskInput: '',
+    },
+    head: {
+        script: [
+            { src: './scripts/jQuery.js'},
+        ]
     },
     created() {
         let self = this;
@@ -162,3 +170,45 @@ const app = new Vue({
         }
     },
 });
+
+// Sort list
+
+var taskSList = document.getElementById('tasksList');
+
+function sortTasks (tasksSorted, tasksLS){
+    for(taskF of tasksSorted){
+        for(taskF2 of tasksLS){
+            if(taskF.name == taskF2.name){
+                taskF.done = taskF2.done;
+                break;
+            }
+        }
+    }
+    localStorage.setItem('tasks',JSON.stringify(tasksSorted));
+};
+
+const tasksListSortable = new Sortable(taskSList, {
+    animation: 150,
+    ghostClass: "sortable-ghost",  // Class name for the drop placeholder
+	chosenClass: "sortable-chosen",  // Class name for the chosen item
+	dragClass: "sortable-drag",  // Class name for the dragging item
+    onSort: function (/**Event*/evt) {
+        var itemEl = evt.item;  // dragged HTMLElement
+		evt.to;    // target list
+		evt.from;  // previous list
+		evt.oldIndex;  // element's old index within old parent
+		evt.newIndex;  // element's new index within new parent
+		evt.oldDraggableIndex; // element's old index within old parent, only counting draggable elements
+		evt.newDraggableIndex; // element's new index within new parent, only counting draggable elements
+		evt.clone // the clone element
+		evt.pullMode;  // when item is in another sortable: `"clone"` if cloning, `true` if moving
+        var tasksListItems = $('.taskName');
+        var tasksOrder = [];
+        for(taskF of tasksListItems){
+            tasksOrder.push({name: taskF.innerText, done: false});
+        }
+        var tasksLS = JSON.parse(localStorage.getItem('tasks'));
+        sortTasks(tasksOrder, tasksLS);
+    },
+});
+

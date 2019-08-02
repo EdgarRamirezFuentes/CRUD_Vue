@@ -20,10 +20,10 @@
         <div id="app" class="container">
                 <input type="text" @keyup.enter="addTask(taskInput)" v-model="taskInput" placeholder="INGRESA LA TAREA A AGREGAR">
                 <button @click="addTask(taskInput)" class="btn btn-primary">AGREGAR TAREA</button>
-                <ul class="mt-3 p-0">
+                <ul id="tasksList" class="mt-3 p-0">
                     <li v-if="tasks.length == 0">No hay tareas pedientes.</li>
-                    <li :class="[task.done ? 'done': 'pending']" v-for="task in tasks" class="p-2 my-2">
-                        <p>{{ task.name }}</p>
+                    <li :class="[task.done ? 'done': 'pending']" v-for="task in tasks" class="listItem p-2 my-2">
+                        <p class="taskName">{{ task.name }}</p>
                         <div class="buttonsContainer">
                                 <button @click="[setDone(task.name), taskDone(task.name)]" v-if="!task.done" class="btn btn-success">HECHO</button>
                                 <button @click="[setPending(task.name), taskPending(task.name)]"class="text-white btn btn-warning" v-if="task.done">PENDIENTE</button>
@@ -39,6 +39,9 @@
                 <a target="_blank" class="font-weight-bold text-center text-uppercase" href="https://edgarramirezweb.netlify.com/">Click para visitar mi p&aacute;gina</a>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
+        <script src="./scripts/jQuery.js"></script>
+        <script src="./node_modules/sortablejs/Sortable.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
         <script src="./scripts/index.js"></script>
     </body>
