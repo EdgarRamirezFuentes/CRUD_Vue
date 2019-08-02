@@ -25,8 +25,8 @@
                     <li :class="[task.done ? 'done': 'pending']" v-for="task in tasks" class="p-2 my-2">
                         <p>{{ task.name }}</p>
                         <div>
-                                <button @click="[task.done = true], taskDone(task.name)" v-if="!task.done" class="mr-2 btn btn-success">HECHO</button>
-                                <button @click="[task.done = false, taskPending(task.name)]"class="mr-2 text-white btn btn-warning" v-if="task.done">PENDIENTE</button>
+                                <button @click="[setDone(task.name), taskDone(task.name)]" v-if="!task.done" class="mr-2 btn btn-success">HECHO</button>
+                                <button @click="[setPending(task.name), taskPending(task.name)]"class="mr-2 text-white btn btn-warning" v-if="task.done">PENDIENTE</button>
                                 <button @click="modifyTask(task.name)" class="mr-2  btn btn-primary">MODIFICAR</button> 
                                 <button @click="removeTask(task.name)"class="btn btn-danger">ELIMINAR</button>
                         </div>

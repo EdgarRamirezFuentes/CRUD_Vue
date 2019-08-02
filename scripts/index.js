@@ -10,6 +10,12 @@ const app = new Vue({
         tasks: [],
         taskInput: '',
     },
+    created() {
+        let self = this;
+        setTimeout(function(){
+            self.tasksLoader();
+        },100);
+    },
     methods:{
         addTask(task){
             task = task.toUpperCase();
@@ -25,6 +31,7 @@ const app = new Vue({
                     this.tasks.push({name: task, done: false});
                     this.taskInput = '';
                     this.taskAdded(task);
+                    this.tasksUpdater(this.tasks);
                 }
             }else{
                 Swal.fire(
@@ -62,6 +69,7 @@ const app = new Vue({
                     if(taskF.name == task){
                         taskF.name = newName;
                         this.taskModified();
+                        this.tasksUpdater(this.tasks);
                     }
                 }
             }
@@ -82,6 +90,7 @@ const app = new Vue({
                     this.tasks.forEach((taskF, index) =>{
                         if(taskF.name == task){
                             this.tasks.splice(index,1);
+                            this.tasksUpdater(this.tasks);
                         }
                     });
                     Toast.fire({
@@ -120,11 +129,38 @@ const app = new Vue({
                 title: task +' agregada correctamente.'.toUpperCase()
             });
         },
+        setDone(task){
+            for(taskF of this.tasks){
+                if(taskF.name == task){
+                    taskF.done = true;
+                    this.tasksUpdater(this.tasks);
+                    console.log(this.tasks);
+                }
+            }
+        },
+        setPending(task){
+            for(taskF of this.tasks){
+                if(taskF.name == task){
+                    taskF.done = false;
+                    this.tasksUpdater(this.tasks);
+                    console.log(this.tasks);
+                }
+            }
+        },
         taskModified(task){
             Toast.fire({
                 type: 'success',
                 title: 'Tarea modificada correctamente.'.toUpperCase()
             });
+        },
+        tasksLoader(){
+            let tasks = JSON.parse(localStorage.getItem('tasks'));
+            tasks.forEach(element =>{
+                this.tasks.push(element);
+            });
+        },
+        tasksUpdater(tasks){
+            localStorage.setItem('tasks', JSON.stringify(tasks));
         }
     },
 });

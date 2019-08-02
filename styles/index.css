@@ -2,6 +2,9 @@
     background-color: #e2e2e2;
     padding: 1rem;
 }
+.button{
+    font-size: .5rem;
+}
 input{
     text-transform: uppercase;
 }
