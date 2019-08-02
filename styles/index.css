@@ -1,0 +1,43 @@
+#app{
+    background-color: #e2e2e2;
+    padding: 1rem;
+}
+input{
+    text-transform: uppercase;
+}
+#app input{
+    width: 100%;
+    border-radius: .5rem;
+    padding: .3rem;
+    margin-bottom: 1rem;
+    border: none;
+}
+#app ul  li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: .5rem;
+    font-weight: bold;
+}
+#app ul  li p{
+    margin: .5rem 0;
+}
+@media(min-width: 768px){
+    #app ul  li{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    #app ul  li p{
+        margin: 0;
+    }
+}
+
+.done {
+    background-color: #2fff41bb;
+}
+.pending{
+    background-color: #fffc37bb;
+}
