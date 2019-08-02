@@ -44,3 +44,14 @@ input{
 .pending{
     background-color: #fffc37bb;
 }
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000000b7;
+    padding: 1rem;
+    color: #ffffff;
+}
+a{
+    color: #ffffff;
+}
