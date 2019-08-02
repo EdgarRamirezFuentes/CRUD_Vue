@@ -1,6 +1,12 @@
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 #app{
     background-color: #e2e2e2;
     padding: 1rem;
+    flex: 1;
 }
 .button{
     font-size: .5rem;
