@@ -7,11 +7,7 @@ const Toast = Swal.mixin({
 const app = new Vue({
     el: '#app',
     data:{
-        tasks: [
-            {name: 'APRENDER HTML', done: false},
-            {name: 'APRENDER CSS', done: false},
-            {name: 'APRENDER JAVASCRIPT', done: false},
-        ],
+        tasks: [],
         taskInput: '',
     },
     methods:{
