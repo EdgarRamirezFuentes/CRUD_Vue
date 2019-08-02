@@ -24,18 +24,19 @@
                     <li v-if="tasks.length == 0">No hay tareas pedientes.</li>
                     <li :class="[task.done ? 'done': 'pending']" v-for="task in tasks" class="p-2 my-2">
                         <p>{{ task.name }}</p>
-                        <div>
-                                <button @click="[setDone(task.name), taskDone(task.name)]" v-if="!task.done" class="mr-2 mt-2 btn btn-success">HECHO</button>
-                                <button @click="[setPending(task.name), taskPending(task.name)]"class="mr-2 mt-2 text-white btn btn-warning" v-if="task.done">PENDIENTE</button>
-                                <button @click="modifyTask(task.name)" class="mr-2 mt-2 btn btn-primary">MODIFICAR</button> 
-                                <button @click="removeTask(task.name)"class="btn  mt-2 btn-danger">ELIMINAR</button>
+                        <div class="buttonsContainer">
+                                <button @click="[setDone(task.name), taskDone(task.name)]" v-if="!task.done" class="btn btn-success">HECHO</button>
+                                <button @click="[setPending(task.name), taskPending(task.name)]"class="text-white btn btn-warning" v-if="task.done">PENDIENTE</button>
+                                <button @click="modifyTask(task.name)" class="btn btn-primary">MODIFICAR</button> 
+                                <button @click="removeTask(task.name)"class="btn btn-danger">ELIMINAR</button>
                         </div>
                     </li>
                 </ul>
         </div>
         <footer>
-                <p class="text-uppercase">Desarrollada por: Edgar Ramírez Fuentes.</p>
-                <a target="_blank" class="text-center text-uppercase" href="https://edgarramirezweb.netlify.com/">Click para visitar mi p&aacute;gina</a>
+                <p class="text-uppercase mb-0">Desarrollada por:</p>
+                <p class="text-uppercase">Edgar Alejandro Ramírez Fuentes</p>
+                <a target="_blank" class="font-weight-bold text-center text-uppercase" href="https://edgarramirezweb.netlify.com/">Click para visitar mi p&aacute;gina</a>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>

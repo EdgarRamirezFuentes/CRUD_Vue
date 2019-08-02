@@ -134,7 +134,6 @@ const app = new Vue({
                 if(taskF.name == task){
                     taskF.done = true;
                     this.tasksUpdater(this.tasks);
-                    console.log(this.tasks);
                 }
             }
         },
@@ -143,7 +142,6 @@ const app = new Vue({
                 if(taskF.name == task){
                     taskF.done = false;
                     this.tasksUpdater(this.tasks);
-                    console.log(this.tasks);
                 }
             }
         },
