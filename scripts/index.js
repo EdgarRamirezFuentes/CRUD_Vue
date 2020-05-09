@@ -49,6 +49,9 @@ const app = new Vue({
                   )
             }
         },
+        irAPagina(){
+            location.href= "https://google.com/"
+        },
         async modifyTask(task){   
             let {value: newName} = await Swal.fire({
                 title: 'Ingresa el nuevo nombre de ' + task,
