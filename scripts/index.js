@@ -30,8 +30,8 @@ const app = new Vue({
             if(task != ''){  
                 if(this.alreadyExist(task)){
                     Swal.fire(
-                        'Adventencia'.toUpperCase(),
-                        'La tarea '.toUpperCase() + task + ' ya existe en la lista.'.toUpperCase(),
+                        'Warning'.toUpperCase(),
+                        'The label '.toUpperCase() + task + ' already exists in the list.'.toUpperCase(),
                         'warning'
                     );
                     this.taskInput ='';
@@ -44,27 +44,24 @@ const app = new Vue({
             }else{
                 Swal.fire(
                     'Error'.toUpperCase(),
-                    'Campo requerido, no dejar en blanco.'.toUpperCase(),
+                    'Label required to add the new task'.toUpperCase(),
                     'error'
                   )
             }
         },
-        irAPagina(){
-            location.href= "https://google.com/"
-        },
         async modifyTask(task){   
             let {value: newName} = await Swal.fire({
-                title: 'Ingresa el nuevo nombre de ' + task,
+                title: 'Write the new label of the task ' + task,
                 input: 'text',
                 inputValue: '',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Modificar'.toUpperCase(),
-                cancelButtonText: 'cancelar'.toUpperCase(),
+                confirmButtonText: 'Modify'.toUpperCase(),
+                cancelButtonText: 'Cancel'.toUpperCase(),
                 inputValidator: (value) => {
                   if (!value) {
-                    return 'Campo requerido.'.toUpperCase();
+                    return 'Label required'.toUpperCase();
                   }
                 }
             });
@@ -72,7 +69,7 @@ const app = new Vue({
             if(this.alreadyExist(newName)){
                 Swal.fire(
                     'ERROR'.toUpperCase(),
-                    'Ese nombre ya existe en la lista.'.toUpperCase(),
+                    'The label '.toUpperCase() + task + ' already exists in the list.'.toUpperCase(),
                     'error'
                 );
             }else{
@@ -88,14 +85,14 @@ const app = new Vue({
         },
         removeTask(task){
             Swal.fire({
-                title: '¿Estás seguro?'.toUpperCase(),
-                text: "Se eliminará ".toUpperCase() + task +" de la lista.".toUpperCase(),
+                title: 'Are you sure?'.toUpperCase(),
+                text: "The task ".toUpperCase() + task +" will be deleted from the list".toUpperCase(),
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, borrar'.toUpperCase(),
-                cancelButtonText: 'cancelar'.toUpperCase(),
+                confirmButtonText: 'Yes, delete'.toUpperCase(),
+                cancelButtonText: 'Cancel'.toUpperCase(),
               }).then((result) => {
                 if (result.value) {
                     this.tasks.forEach((taskF, index) =>{
@@ -106,7 +103,7 @@ const app = new Vue({
                     });
                     Toast.fire({
                         type: 'success',
-                        title: task +' eliminada correctamente.'.toUpperCase()
+                        title: task +' was deleted successfully'.toUpperCase()
                     });
                 }
               });
@@ -125,19 +122,19 @@ const app = new Vue({
         taskDone(task){
             Toast.fire({
                 type: 'success',
-                title: task + ' hecha.'.toUpperCase()
+                title: task + ' done'.toUpperCase()
             });
         },
         taskPending(task){
             Toast.fire({
                 type: 'warning',
-                title: task +' pendiente.'.toUpperCase()
+                title: task +' pending'.toUpperCase()
             });
         },
         taskAdded(task){
             Toast.fire({
                 type: 'success',
-                title: task +' agregada correctamente.'.toUpperCase()
+                title: task +' was added successfully'.toUpperCase()
             });
         },
         setDone(task){
@@ -159,7 +156,7 @@ const app = new Vue({
         taskModified(task){
             Toast.fire({
                 type: 'success',
-                title: 'Tarea modificada correctamente.'.toUpperCase()
+                title: 'Label modified successfully'.toUpperCase()
             });
         },
         tasksLoader(){
